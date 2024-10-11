@@ -286,17 +286,17 @@ uint16_t input_get_state(uint8_t id, void *response, bool *combo_pressed)
             if (_buttons & (1 << 2))  state->dButtons |= N64_DL;  //DLEFT
             if (_buttons & (1 << 3))  state->dButtons |= N64_DR;  //DRIGHT
             if (_buttons & (1 << 4))  state->dButtons |= N64_ST;  //START
-            if (_buttons & (1 << 5))  state->dButtons |= 0;       //BACK
-            if (_buttons & (1 << 6))  state->dButtons |= 0;       //LS
+            if (_buttons & (1 << 5))  state->dButtons |= N64_Z;   //BACK - 8Bitdo Modkit Z
+            if (_buttons & (1 << 6))  state->dButtons |= 0;       //LS - 8Bitdo Modkit ZR
             if (_buttons & (1 << 7))  state->dButtons |= 0;       //RS
             if (_buttons & (1 << 8))  state->dButtons |= N64_LB;  //LB
             if (_buttons & (1 << 9))  state->dButtons |= N64_RB;  //RB
             if (_buttons & (1 << 10)) state->dButtons |= 0;       //XBOX BUTTON
             if (_buttons & (1 << 11)) state->dButtons |= 0;       //XBOX SYNC
-            if (_buttons & (1 << 12)) state->dButtons |= N64_A;   //A
-            if (_buttons & (1 << 13)) state->dButtons |= N64_B;   //B
-            if (_buttons & (1 << 14)) state->dButtons |= N64_B;   //X
-            if (_buttons & (1 << 15)) state->dButtons |= 0;       //Y
+            if (_buttons & (1 << 12)) state->dButtons |= N64_CD;  //A - 8Bitdo Modkit C-down
+            if (_buttons & (1 << 13)) state->dButtons |= N64_CR;  //B - 8Bitdo Modkit C-right
+            if (_buttons & (1 << 14)) state->dButtons |= N64_CL;  //X - 8Bitdo Modkit C-left
+            if (_buttons & (1 << 15)) state->dButtons |= N64_CU;  //Y - 8Bitdo Modkit C-up
             if (_buttons & (1 << 7))  state->dButtons |= N64_CU | //RS triggers
                                                       N64_CD | //all C usb_buttons
                                                       N64_CL |
@@ -305,9 +305,9 @@ uint16_t input_get_state(uint8_t id, void *response, bool *combo_pressed)
             state->x_axis = _axis[0] * 100 / 32768;
             state->y_axis = _axis[1] * 100 / 32768;
 
-            //Z button
-            if (_axis[4] > 10) state->dButtons |= N64_Z; //LT
-            if (_axis[5] > 10) state->dButtons |= N64_Z; //RT
+            //A and B buttons
+            if (_axis[4] > 10) state->dButtons |= N64_B; //LT - 8Bitdo Modkit B
+            if (_axis[5] > 10) state->dButtons |= N64_A; //RT - 8Bitdo Modkit A
 
             //C usb_buttons
             if (_axis[2] > 16000)  state->dButtons |= N64_CR;
@@ -317,7 +317,7 @@ uint16_t input_get_state(uint8_t id, void *response, bool *combo_pressed)
 
             //Button to hold for 'combos'
             if (combo_pressed)
-                *combo_pressed = (_buttons & (1 << 5)); //back
+                *combo_pressed = (_buttons & (1 << 6)); //LS - 8Bitdo Modkit ZR
 
             //Map right axis for dual stick mode
             right_axis[0] = _axis[2] * 100 / 32768;
