@@ -71,7 +71,7 @@
 /* FIRMWARE DEFAULTS (NOT CONFIGURABLE DURING USE) */
 #define SNAP_RANGE 5           //+/- what angle range will snap. 5 will snap to 45 degree if between 40 and 50 degrees.
 #define MOUSE_SENSITIVITY 2.0f //Just what felt right to me with my mouse.
-#define MAG_AT_45DEG 1.1f      //Octagonal shape has a larger magnitude at the 45degree points. 1.1 times larger seems about right
+#define MAG_AT_45DEG 1.15f      //Octagonal shape has a larger magnitude at the 45degree points. Adjusted to make the 8Bitdo Hall Effect sticks match OEM
 
 /* TFT DISPLAY */
 #define ENABLE_TFT_DISPLAY 1
